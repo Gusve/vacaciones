@@ -11,10 +11,20 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+
+
+Route::get('nombre/{nombre}', function ($nombre) {
+    return ('usuario es: ".$nombre.php');
+
 });
+
+
 
 Auth::routes();
 
+Route::resource('users','UserController');
+Route::get('/users-eliminar/{id}', 'UserController@destroydos')->name('users.eliminar');
+Route::view('/','welcome');
 Route::get('/home', 'HomeController@index')->name('home');
+
+

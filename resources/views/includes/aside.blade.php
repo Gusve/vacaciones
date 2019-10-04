@@ -55,10 +55,19 @@ with font-awesome or any other icon font library -->
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="cargos" class="nav-link">
                         <i class="nav-icon fa fa-th"></i>
                         <p>
-                            Simple Link
+                            Cargo
+                            <span class="right badge badge-danger">New</span>
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{route('users.index')}}" class="nav-link">
+                        <i class="nav-icon fa fa-th"></i>
+                        <p>
+                            usuarios
                             <span class="right badge badge-danger">New</span>
                         </p>
                     </a>
