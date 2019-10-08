@@ -22,9 +22,11 @@ Route::get('nombre/{nombre}', function ($nombre) {
 
 Auth::routes();
 
+Route::view('/','welcome');
+
 Route::resource('users','UserController');
 Route::get('/users-eliminar/{id}', 'UserController@destroydos')->name('users.eliminar');
-Route::view('/','welcome');
+
 Route::get('/home', 'HomeController@index')->name('home');
 
 // Route::get('cargo/{variable?}', function ($variable=false) {

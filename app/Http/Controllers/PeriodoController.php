@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Cargo;
+use App\Periodo;
 use Illuminate\Http\Request;
 
-class CargoController extends Controller
+class PeriodoController extends Controller
 {
 
     public function index()
