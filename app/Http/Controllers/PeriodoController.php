@@ -8,65 +8,109 @@ use Illuminate\Http\Request;
 class PeriodoController extends Controller
 {
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
-        // 
-        $variables = Periodo::all();
-        return view('Periodo.index',compact('variables'));
-
+        $periodos = Periodo::paginate(5);
+        return view('periodo.index',
+            compact('periodos')
+        )->with('i', (request()->input('page', 1) - 1) * 5);
         //$periodo =>periodo::orderBy('id', 'Asc')=>paginate(5);
-       
-
     }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function create()
     {
-        return view('periodo.add');
+        return view('periodo.create');
     }
 
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request)
     {
-        //
-        $guardar = new Periodo;
-        $guardar->name = $request->name;
-        $guardar->save();
-        return redirect('users');
-        
+        $request->validate([
+            'rango' => 'required',
+            'dias_disp' => 'required',
+        ]);
+
+        $periodo = new Periodo;
+        $periodo->rango = $request->rango;
+        $periodo->dias_disp = $request->dias_disp;
+        $periodo->save();
+        // return redirect('users');
+        return redirect()->route('periodos.index')->with('success', 'Perido registrado');
     }
-    
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Product  $product
+     * @return \Illuminate\Http\Response
+     */
     public function show($id)
     {
-        //
-        $mostrar = Periodo::find($id);
-        return view('Periodo.mostrar')->with('mostrar',$mostrar);
+        $instance = Periodo::find($id);
+        return view('periodo.show', ['periodo' => $instance]);
     }
 
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Product  $product
+     * @return \Illuminate\Http\Response
+     */
     public function edit($id)
     {
-        //
-        $user = Cargo::find($id);
-        return view('Periodo.editar',compact('user'));
+        $instance = Periodo::find($id);
+        return view('periodo.edit', ['periodo' => $instance]);
     }
 
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Product  $product
+     * @return \Illuminate\Http\Response
+     */
     public function update(Request $request, $id)
     {
-        //
-        $actualizar = Periodo::findOrFail($id);
-        $actualizar->name = $request->Periodo;
-        $actualizar->save();
-        return redirect('Periodo');
+        $request->validate([
+            'rango' => 'required',
+            'dias_disp' => 'required',
+        ]);
+
+        $periodo = Periodo::findOrFail($id);
+        $periodo->rango = $request->rango;
+        $periodo->dias_disp = $request->dias_disp;
+        $periodo->save();
+        
+        return redirect()->route('periodos.index')->with('success', 'periodo editado');
     }
 
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Product  $product
+     * @return \Illuminate\Http\Response
+     */
     public function destroy($id)
     {
         //
-        Periodo::destroy($id);
-        return redirect('Periodo');
+        $instance = Periodo::findOrFail($id);
+        $instance->delete();
+        return redirect()->route('periodos.index')->with('success', 'periodo eliminado');
     }
 
-    public function destroydos($id)
-    {
-        //
-        Periodo::destroy($id);
-        return redirect('Periodo');
-    }
 }

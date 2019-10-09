@@ -17,11 +17,9 @@ class CargoController extends Controller
         // 
         $variables = Cargo::all();
         return view('cargos.index',compact('variables'));
-
         //$cargos =>cargos::orderBy('id', 'Asc')=>paginate(5);
-       
-
     }
+
     public function create()
     {
         return view('usuarios.add');

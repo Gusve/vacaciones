@@ -16,10 +16,6 @@
             <div class="info">
 
 
-
-
-
-
                 <a href="#" class="d-block">
                     {{\Auth::user()->name}}
                 </a>
@@ -56,55 +52,38 @@ with font-awesome or any other icon font library -->
                 </li> -->
 
 
-
+                <li class="nav-item">
+                    <a href="{{route('users.index')}}" class="nav-link">
+                        <i class="nav-icon fa fa-th"></i>
+                        <p>
+                            usuarios
+                            <!-- <span class="right badge badge-danger">New</span> -->
+                        </p>
+                    </a>
+                </li>
 
 
                 <li class="nav-item">
                     <a href="{{route('cargos.index')}}" class="nav-link">
                         <i class="nav-icon fa fa-th"></i>
                         <p>
-                            Cargo
-                            <span class="right badge badge-danger">borrar</span>
+                            cargos
+                            <!-- <span class="right badge badge-danger">borrar</span> -->
                         </p>
                     </a>
                 </li>
 
 <!-- crear botones -->
-                <li class="nav-item">
-                    <a href="{{route('users.index')}}" class="nav-link">
-                        <i class="nav-icon fa fa-th"></i>
-                        <p>
-                            usuarios
-                            <span class="right badge badge-danger">New</span>
-                        </p>
-                    </a>
-                </li>
 <!-- Botones -->
                 <li class="nav-item">
-                    <a href="{{route('Periodo.index')}}" class="nav-link">
+                    <a href="{{route('periodos.index')}}" class="nav-link">
                         <i class="nav-icon fa fa-th"></i>
                         <p>
-                            usuarios
-                            <span class="right badge badge-danger">New</span>
+                            periodos
+                            <!-- <span class="right badge badge-danger">New</span> -->
                         </p>
                     </a>
                 </li>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
             </ul>

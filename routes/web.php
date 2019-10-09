@@ -12,12 +12,9 @@
 */
 
 
-
-Route::get('nombre/{nombre}', function ($nombre) {
-    return ('usuario es: ".$nombre.php');
-
-});
-
+// Route::get('nombre/{nombre}', function ($nombre) {
+//     return ('usuario es: ".$nombre.php');
+// });
 
 
 Auth::routes();
@@ -35,7 +32,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 // });
 
 Route::resource('cargos','CargoController');
-Route::resource('Periodo','PeriodoController');
+Route::resource('periodos','PeriodoController');
 
 
 

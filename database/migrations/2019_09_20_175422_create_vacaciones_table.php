@@ -19,9 +19,9 @@ class CreateVacacionesTable extends Migration
             $table->integer('fecha_i');
             $table->integer('fecha_f');
             $table->integer('dias_t');
-         $table->timestamps();
-         $table->foreign('user_periodo_id')->references('id')->on('usuario_periodo');
-         });
+            $table->timestamps();
+            $table->foreign('user_periodo_id')->references('id')->on('usuario_periodo');
+        });
     }
 
 
