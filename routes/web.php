@@ -19,23 +19,20 @@
 
 Auth::routes();
 
+# publicas
 Route::view('/','welcome');
 
-Route::resource('users','UserController');
-Route::get('/users-eliminar/{id}', 'UserController@destroydos')->name('users.eliminar');
 
-Route::get('/home', 'HomeController@index')->name('home');
-
-// Route::get('cargo/{variable?}', function ($variable=false) {
-//     return ("usuario es: ".$variable);
-
-// });
-
-Route::resource('cargos','CargoController');
-Route::resource('periodos','PeriodoController');
+# privadas
 
 
+Route::get('/home', 'HomeController@index')->middleware('auth')->name('home');
 
+Route::resource('users','UserController')->middleware('auth');
+Route::get('/users-eliminar/{id}', 'UserController@destroydos')
+	->middleware('auth')
+	->name('users.eliminar');
 
-
-
+Route::resource('cargos','CargoController')->middleware('auth');
+Route::resource('periodos','PeriodoController')->middleware('auth');
+Route::resource('areas','AreaController')->middleware('auth');

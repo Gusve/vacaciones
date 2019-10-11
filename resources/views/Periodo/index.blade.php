@@ -70,41 +70,60 @@
     @endif
 
     <br>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card card-default color-palette-box">
+
+            <div class="card-header">
+                <h3 class="card-title">
+                    <i class="fa fa-tag"></i>
+                    <!-- Title -->
+                    PERIODOS
+                </h3>
+            </div>
+
+            <div class="card-body">
    
-    <table class="table table-bordered">
-        <tr>
-            <th>No</th>
-            <th>Rango</th>
-            <th>Dias Disponibles</th>
-            <th width="280px">Accion</th>
-        </tr>
-        @foreach ($periodos as $periodo)
-        <tr>
-            <td>{{ ++$i }}</td>
-            <td>{{ $periodo->rango }}</td>
-            <td>{{ $periodo->dias_disp }}</td>
-            <td>
-                <form
-                    onsubmit="return confirm('CONFIRMAR ELIMINAR PERIODO');"
-                    action="{{ route('periodos.destroy', $periodo->id) }}"
-                    method="POST"
-                >
-   
-                    <a class="btn btn-info" href="{{ route('periodos.show',$periodo->id) }}">VER</a>
-    
-                    <a class="btn btn-primary" href="{{ route('periodos.edit',$periodo->id) }}">EDITAR</a>
-   
-                    @csrf
-                    @method('DELETE')
-      
-                    <button type="submit" class="btn btn-danger">ELIMINAR</button>
-                </form>
-            </td>
-        </tr>
-        @endforeach
-    </table>
-  
-    {!! $periodos->links() !!}
+                <table class="table table-bordered">
+                    <tr>
+                        <th>No</th>
+                        <th>Rango</th>
+                        <th>Dias Disponibles</th>
+                        <th width="280px">Accion</th>
+                    </tr>
+                    @foreach ($periodos as $periodo)
+                    <tr>
+                        <td>{{ ++$i }}</td>
+                        <td>{{ $periodo->rango }}</td>
+                        <td>{{ $periodo->dias_disp }}</td>
+                        <td>
+                            <form
+                                onsubmit="return confirm('CONFIRMAR ELIMINAR PERIODO');"
+                                action="{{ route('periodos.destroy', $periodo->id) }}"
+                                method="POST"
+                            >
+               
+                                <a class="btn btn-info" href="{{ route('periodos.show',$periodo->id) }}">VER</a>
+                
+                                <a class="btn btn-primary" href="{{ route('periodos.edit',$periodo->id) }}">EDITAR</a>
+               
+                                @csrf
+                                @method('DELETE')
+                  
+                                <button type="submit" class="btn btn-danger">ELIMINAR</button>
+                            </form>
+                        </td>
+                    </tr>
+                    @endforeach
+                </table>
+              
+                {!! $periodos->links() !!}
+
+            </div>
+        </div>
+    </div> 
+</div> 
 
 
 @section('js-inferior')

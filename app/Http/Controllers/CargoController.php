@@ -14,61 +14,94 @@ class CargoController extends Controller
      */
     public function index()
     {
-        // 
-        $variables = Cargo::all();
-        return view('cargos.index',compact('variables'));
-        //$cargos =>cargos::orderBy('id', 'Asc')=>paginate(5);
+        $cargos = Cargo::paginate(5);
+        return view('cargos.index',
+            ['cargos' => $cargos]
+        )->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function create()
     {
-        return view('usuarios.add');
+        return view('cargos.create');
     }
 
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request)
     {
-        //
-        $guardar = new Cargo;
-        $guardar->name = $request->name;
-        $guardar->save();
-        return redirect('users');
-        
+        $request->validate([
+            'nombre' => 'required',
+        ]);
+
+        $cargo = new Cargo;
+        $cargo->nombre = $request->nombre;
+        $cargo->save();
+        return redirect()->route('cargos.index')->with('success', 'cargo registrado');
     }
     
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Product  $product
+     * @return \Illuminate\Http\Response
+     */
     public function show($id)
     {
-        //
-        $mostrar = Cargo::find($id);
-        return view('cargos.mostrar')->with('mostrar',$mostrar);
+        $cargo = Cargo::find($id);
+        return view('cargos.show')->with('cargo', $cargo);
     }
 
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Product  $product
+     * @return \Illuminate\Http\Response
+     */
     public function edit($id)
     {
-        //
-        $user = Cargo::find($id);
-        return view('cargos.editar',compact('user'));
+        $cargo = Cargo::find($id);
+        return view('cargos.edit', ['cargo' => $cargo]);
     }
 
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Product  $product
+     * @return \Illuminate\Http\Response
+     */
     public function update(Request $request, $id)
     {
-        //
-        $actualizar = Cargo::findOrFail($id);
-        $actualizar->name = $request->cargos;
-        $actualizar->save();
-        return redirect('cargos');
+        $request->validate([
+            'nombre' => 'required',
+        ]);
+        $cargo = Cargo::findOrFail($id);
+        $cargo->nombre = $request->nombre;
+        $cargo->save();
+        
+        return redirect()->route('cargos.index')->with('success', 'cargo editado');
     }
 
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Product  $product
+     * @return \Illuminate\Http\Response
+     */
     public function destroy($id)
     {
-        //
-        Cargo::destroy($id);
-        return redirect('cargos');
+        $instance = Cargo::findOrFail($id);
+        $instance->delete();
+        return redirect()->route('cargos.index')->with('success', 'cargo eliminado');
     }
 
-    public function destroydos($id)
-    {
-        //
-        Cargo::destroy($id);
-        return redirect('cargos');
-    }
 }

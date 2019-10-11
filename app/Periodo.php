@@ -19,4 +19,13 @@ class Periodo extends Model
      * @var array
      */
     protected $fillable = ['id', 'rango', 'dias_disp'];
+
+    /**
+     * Un area en varios (usuario periodo)
+     */
+    public function usuario_periodo()
+    {
+        return $this->hasMany('App\usuario_periodo');
+    }
+
 }

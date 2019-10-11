@@ -36,4 +36,21 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Un usuario posee varios (usuario detalle)
+     */
+    public function usuario_detalle()
+    {
+        return $this->belongsToMany('App\usuario_periodo');
+    }
+
+    /**
+     * Un usuario posee varios (usuario periodo)
+     */
+    public function usuario_periodo()
+    {
+        return $this->belongsToMany('App\usuario_periodo');
+    }
+
 }

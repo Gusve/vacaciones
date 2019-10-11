@@ -50,7 +50,7 @@ class PeriodoController extends Controller
         $periodo->dias_disp = $request->dias_disp;
         $periodo->save();
         // return redirect('users');
-        return redirect()->route('periodos.index')->with('success', 'Perido registrado');
+        return redirect()->route('periodos.index')->with('success', 'Periodo registrado');
     }
 
     /**

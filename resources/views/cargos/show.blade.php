@@ -18,10 +18,10 @@
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2>DETALLES CARGO</h2>
+                <h2>DETALLES PERIODO</h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('periodos.index') }}">VOLVER</a>
+                <a class="btn btn-primary" href="{{ route('cargos.index') }}">VOLVER</a>
             </div>
         </div>
     </div>
@@ -31,14 +31,8 @@
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Rango:</strong>
-                {{ $periodo->rango }}
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Dias disponibles:</strong>
-                {{ $periodo->dias_disp }}
+                <strong>Nombre:</strong>
+                {{ $cargo->nombre }}
             </div>
         </div>
     </div>

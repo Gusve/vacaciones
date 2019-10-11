@@ -85,6 +85,16 @@ with font-awesome or any other icon font library -->
                     </a>
                 </li>
 
+                <li class="nav-item">
+                    <a href="{{route('areas.index')}}" class="nav-link">
+                        <i class="nav-icon fa fa-th"></i>
+                        <p>
+                            departamentos
+                            <!-- <span class="right badge badge-danger">New</span> -->
+                        </p>
+                    </a>
+                </li>
+
 
             </ul>
         </nav>

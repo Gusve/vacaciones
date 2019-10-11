@@ -13,7 +13,7 @@
 <div class="col-sm-6">
     <ol class="breadcrumb float-sm-right">
         <li class="breadcrumb-item"><a href="/home">Tablero</a></li>
-        <li class="breadcrumb-item active">Cargos</li>
+        <li class="breadcrumb-item active">Departamentos</li>
     </ol>
 </div>
 
@@ -52,7 +52,7 @@
 <div class="row">
     <div class="col-lg-12 margin-tb">
         <div class="pull-right">
-            <a class="btn btn-success" href="{{ route('cargos.create') }}">AÑADIR CARGO</a>
+            <a class="btn btn-success" href="{{ route('areas.create') }}">AÑADIR DEPARTAMENTO</a>
         </div>
     </div>
 </div>
@@ -74,7 +74,7 @@
                 <h3 class="card-title">
                     <i class="fa fa-tag"></i>
                     <!-- Title -->
-                    CARGOS
+                    DEPARTAMENTOS
                 </h3>
             </div>
 
@@ -86,20 +86,20 @@
                         <th>Nombre</th>
                         <th width="280px">Accion</th>
                     </tr>
-                    @foreach ($cargos as $cargo)
+                    @foreach ($areas as $area)
                     <tr>
                         <td>{{ ++$i }}</td>
-                        <td>{{ $cargo->nombre }}</td>
+                        <td>{{ $area->nombre }}</td>
                         <td>
                             <form
-                                onsubmit="return confirm('CONFIRMAR ELIMINAR CARGO');"
-                                action="{{ route('cargos.destroy', $cargo->id) }}"
+                                onsubmit="return confirm('CONFIRMAR ELIMINAR DEPARTAMENTO');"
+                                action="{{ route('areas.destroy', $area->id) }}"
                                 method="POST"
                             >
                
-                                <a class="btn btn-info" href="{{ route('cargos.show',$cargo->id) }}">VER</a>
+                                <a class="btn btn-info" href="{{ route('areas.show',$area->id) }}">VER</a>
                 
-                                <a class="btn btn-primary" href="{{ route('cargos.edit',$cargo->id) }}">EDITAR</a>
+                                <a class="btn btn-primary" href="{{ route('areas.edit',$area->id) }}">EDITAR</a>
                
                                 @csrf
                                 @method('DELETE')
@@ -111,7 +111,7 @@
                     @endforeach
                 </table>
               
-                {!! $cargos->links() !!}
+                {!! $areas->links() !!}
             
             </div>
  
